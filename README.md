@@ -1,1 +1,1 @@
-# rockpaperscissors-rfs
+# rockpaperscissors-frs
