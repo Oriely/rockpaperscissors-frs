@@ -20,7 +20,6 @@
 #gameview {
   color: #264653;
   background: #2a9d8f;
-  width: 500px;
   height: 80%;
   padding: 10px;
   border-radius: 5px;
@@ -34,6 +33,13 @@
   margin-bottom: 5px;
 }
 
+.handChoice {
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  opacity: 0.5;
+}
+
 #choices {
   display: grid;
   grid-template-rows: 50px 50px 50px 50px 50px;
@@ -45,6 +51,18 @@
   background-size: cover;
   width: 50px;
   height: 50px;
+  opacity: 0.8;
+}
+
+.choiceSelected {
+  opacity: 0;
+  box-shadow: 0 0 8pt 1pt red;
+  opacity: 1;
+  border-radius: 50%;
+}
+
+.choice:hover {
+  opacity: 1;
 }
 
 #hint {

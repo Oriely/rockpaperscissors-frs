@@ -1,64 +1,76 @@
 @use 'fonts';
-
-$font: 100% 'Ubuntu Condensed', sans-serif;
+$font: 100% 'Ubuntu Condensed',
+sans-serif;
 $color-1: #264653;
 $color-2: #2a9d8f;
 $color-3: #e9c46a;
 $color-4: #f4a261;
 $color-5: #e76f51;
-
-
 // reset default values and set sizing to border box...
-
-
-
 * {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 #app {
     background: $color-1;
     display: flex;
-    width:100vw;
-    height:100vh;
+    width: 100vw;
+    height: 100vh;
     justify-content: center;
-    flex-direction:column;
-    align-items:center;
+    flex-direction: column;
+    align-items: center;
     font: $font;
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 
 #gameview {
-    color:$color-1;
+    color: $color-1;
     background: $color-2;
-    width:500px;
-    height:80%;
-    padding:10px;
-    border-radius:5px;
-    font-size:18px;
+    height: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
 }
 
 #info {
     display: flex;
-    width:270px;
+    width: 270px;
     justify-content: space-between;
     margin-bottom: 5px;
 }
 
-#choices {
-    display:grid;
-    grid-template-rows:50px 50px 50px 50px 50px;
-    grid-template-columns: 50px 50px 50px 50px 50px;
-    grid-gap:5px;
+.handChoice {
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    opacity: 0.5;
+}
 
+#choices {
+    display: grid;
+    grid-template-rows: 50px 50px 50px 50px 50px;
+    grid-template-columns: 50px 50px 50px 50px 50px;
+    grid-gap: 5px;
 }
 
 .choice {
-    background-size:cover;
-    width:50px;
-    height:50px;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    opacity: 0.8;
+}
+
+.choiceSelected {
+    opacity: 0;
+    box-shadow: 0 0 8pt 1pt red;
+    opacity: 1;
+    border-radius: 50%;
+}
+
+.choice:hover {
+    opacity: 1.0;
 }
 
 #hint {
