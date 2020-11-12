@@ -11,6 +11,12 @@ $color-7: #f7ede2;
 $color-8: #f5cac3;
 $color-9: #84a59d;
 $color-10: #f28482;
+
+$c1: #f8efd4;
+$c2: #edc988;
+$c3: #d7385e;
+$c4: #132743;
+
 // reset default values and set sizing to border box...
 * {
     margin: 0;
@@ -20,30 +26,52 @@ $color-10: #f28482;
 }
 
 #app {
-    background: $color-1;
-    display: grid;
+    position:absolute;
+    display: flex;
+    background-color:$c4;
+    background: url('../img/background.jpg');
+    background-position:center;
+    background-size:cover;
+    justify-content: center;
+    align-items: center;
+    align-content:center;
     width: 100vw;
     height: 100vh;
-    grid-template-rows: 1fr 1fr 1fr;
     font: $font;
 }
 
-#gameview {}
+#app-inner {
+    display: grid;
+    width:1000px;
+    grid-template-rows: 1fr 2fr 2fr;
+    border-radius:100%;
+}
+
+#gameview {
+
+    margin-left:0;
+    margin-right:0;
+}
 
 #info {
     display: flex;
-    width: 270px;
+    width: 100%;
     justify-content: space-between;
     margin-bottom: 5px;
 }
 
 .box {
     color: $color-1;
-    background: $color-7;
+    background: $c1;
     height: auto;
-    padding: 10px;
     border-radius: 5px;
     font-size: 18px;
+    padding:10px;
+    margin:10px;
+}
+
+.box h1 {
+    display:block;
 }
 
 .handChoice {
@@ -54,18 +82,17 @@ $color-10: #f28482;
 }
 
 #choices {
-    display: grid;
-    grid-template-columns: 50px 50px 50px 50px 50px;
-    grid-gap: 5px;
+    width:100%;
+    height:100%;
 }
 
 .choice {
     background-size: cover;
-    width: 50px;
-    height: 50px;
+    width: 37px;
+    height: 37px;
     opacity: 0.5;
+    display: inline-block;
 }
-
 .choiceSelected {
     opacity: 0;
     box-shadow: 0 0 8pt 1pt red;
@@ -82,44 +109,43 @@ $color-10: #f28482;
 }
 
 #col1 {
-    display: flex;
+    display:flex;
+    justify-content: center;
+    align-items:center;
     width: 100%;
     height: 100%;
-    justify-content: center;
-    align-items: center;
-    background: $color-6;
+
 }
 
 #col2 {
-    display: grid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
-    grid-template-columns: 1fr 1fr 1fr;
-    background: $color-6;
+    text-transform: uppercase;
 }
 
 #col3 {
-    display: flex;
+    display: grid;
     width: 100%;
-    justify-content: center;
-    align-items: center;
-    background: $color-6;
-    padding: 50px;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 #score {
     background: $color-7;
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
-    padding: 10px;
+    display:flex;
 }
 
 #result {
+    color:white;
+    font-size:20px;
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
+    text-transform:uppercase;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 25px darkblue;
 }
 
 #picks {
@@ -140,6 +166,7 @@ $color-10: #f28482;
     width: 100px;
     border-radius: 100%;
     background: white;
+    border:3px solid black;
 }
 
 .pickedHand h1 {}
@@ -150,10 +177,11 @@ $color-10: #f28482;
 
 #computerPic {
     background: url('../img/computer.gif');
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     background-size: cover;
     border-radius: 50%;
+    display:block;
 }
 
 .choiceHint {
@@ -166,4 +194,68 @@ $color-10: #f28482;
 #hints div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.abcd {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    align-content:center; 
+
+
+}
+
+#picks div {
+    padding: 5px;
+}
+
+#playerScore{
+   
+}
+
+#computerScore {
+}
+
+.left {
+    z-index:222;
+    float:left;
+    position: relative;
+    left:0;
+
+}
+
+.right {
+    z-index:222;
+    float:right;
+    position:relative;
+    right:0;
+}
+
+.hpbar {
+    width:300px;
+    height:70px;
+    background:white;
+    border:3px solid black;
+}
+
+#playerHP span{
+    display:block;
+    height:100%;
+    background:red;
+
+
+}
+
+#computerHP span {
+    display:block;
+    height:100%;
+    background:red;
+}
+#playerHP:before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    border-top: 80px solid white;
+    border-left: 80px solid red;
+    width: 0;
 }
