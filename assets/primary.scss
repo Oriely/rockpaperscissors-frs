@@ -2,6 +2,8 @@
 $font: 100% 'Ubuntu Condensed',
 sans-serif;
 $color-1: #4d194d;
+$hp-bar-color: background rgb(254, 100, 100);
+$hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rgba(179, 9, 9, 1) 58%, rgba(64, 2, 2, 1) 100%);
 // reset default values and set sizing to border box...
 * {
     margin: 0;
@@ -110,6 +112,8 @@ $color-1: #4d194d;
     font-size: 30px;
 }
 
+.score-container {}
+
 #score-top {
     background: black;
     width: 80%;
@@ -129,16 +133,15 @@ $color-1: #4d194d;
     font-family: 'Righteous', cursive;
     height: 100%;
     width: 100%;
+    margin: 10px;
 }
 
 #row1-col2 div h1:nth-child(1) {
-    margin-right: 10px;
     text-align: right;
 }
 
 #row1-col2 div h1:nth-child(2) {
     text-align: left;
-    margin-left: 10px;
 }
 
 .seperator {
@@ -157,16 +160,26 @@ $color-1: #4d194d;
     width: 100%;
     height: 100%;
     text-transform: uppercase;
+    color: white;
 }
 
 #row3 {
     display: grid;
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "hints gameui exta";
 }
 
-#score {
-    display: flex;
+.row3-col1 {
+    grid-area: hints;
+}
+
+.row3-col2 {
+    grid-area: gameui;
+}
+
+.row3-col3 {
+    grid-area: extra;
 }
 
 #result {
@@ -185,7 +198,6 @@ $color-1: #4d194d;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     text-align: center;
-    text-transform: capitalize;
 }
 
 .pickedHand {
@@ -201,21 +213,6 @@ $color-1: #4d194d;
     border: 3px solid black;
 }
 
-.pickedHand h1 {}
-
-.disable {
-    cursor: none;
-}
-
-#computerPic {
-    background: url('../img/computer.gif');
-    width: 100px;
-    height: 100px;
-    background-size: cover;
-    border-radius: 50%;
-    display: block;
-}
-
 .choiceHint {
     background-size: cover;
     width: 30px;
@@ -223,10 +220,7 @@ $color-1: #4d194d;
     display: inline-block;
 }
 
-#hints div {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
+#hints div {}
 
 .abcd {
     display: flex;
@@ -239,32 +233,14 @@ $color-1: #4d194d;
     padding: 5px;
 }
 
-#playerScore {}
-
-#computerScore {}
-
-.left {
-    z-index: 222;
-    float: left;
-    position: relative;
-    left: 0;
-}
-
-.right {
-    z-index: 222;
-    float: right;
-    position: relative;
-    right: 0;
-}
-
-#playerHPouter {
+#hp-border-left {
     background: black;
     padding: 2px;
     clip-path: polygon(72% 100%, 0 100%, 0 0, 100% 0, 100% 11%);
     width: 305px;
 }
 
-#playerHP {
+#hp-container-left {
     width: 300px;
     height: 40px;
     background: black;
@@ -272,7 +248,7 @@ $color-1: #4d194d;
     clip-path: polygon(70% 100%, 0 100%, 0 0, 100% 0);
 }
 
-#computerHPouter {
+#hp-border-right {
     float: right;
     // -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 75% 0);
     background: black;
@@ -281,7 +257,7 @@ $color-1: #4d194d;
     width: 305px;
 }
 
-#computerHP {
+#hp-container-right {
     width: 300px;
     height: 40px;
     background: black;
@@ -289,16 +265,9 @@ $color-1: #4d194d;
     clip-path: polygon(0 0, 25% 100%, 100% 100%, 100% 0);
 }
 
-#playerHP span {
+.hp-bar {
     display: block;
     height: 100%;
-    background: rgb(254, 100, 100);
-    background: linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rgba(179, 9, 9, 1) 58%, rgba(64, 2, 2, 1) 100%);
-}
-
-#computerHP span {
-    display: block;
-    height: 100%;
-    background: rgb(254, 100, 100);
-    background: linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rgba(179, 9, 9, 1) 58%, rgba(64, 2, 2, 1) 100%);
+    background: $hp-bar-color;
+    background: $hp-bar-gradient;
 }

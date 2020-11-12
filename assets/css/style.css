@@ -125,16 +125,15 @@
   font-family: "Righteous", cursive;
   height: 100%;
   width: 100%;
+  margin: 10px;
 }
 
 #row1-col2 div h1:nth-child(1) {
-  margin-right: 10px;
   text-align: right;
 }
 
 #row1-col2 div h1:nth-child(2) {
   text-align: left;
-  margin-left: 10px;
 }
 
 .seperator {
@@ -151,16 +150,26 @@
   width: 100%;
   height: 100%;
   text-transform: uppercase;
+  color: white;
 }
 
 #row3 {
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "hints gameui exta";
 }
 
-#score {
-  display: flex;
+.row3-col1 {
+  grid-area: hints;
+}
+
+.row3-col2 {
+  grid-area: gameui;
+}
+
+.row3-col3 {
+  grid-area: extra;
 }
 
 #result {
@@ -179,7 +188,6 @@
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   text-align: center;
-  text-transform: capitalize;
 }
 
 .pickedHand {
@@ -195,29 +203,11 @@
   border: 3px solid black;
 }
 
-.disable {
-  cursor: none;
-}
-
-#computerPic {
-  background: url("../img/computer.gif");
-  width: 100px;
-  height: 100px;
-  background-size: cover;
-  border-radius: 50%;
-  display: block;
-}
-
 .choiceHint {
   background-size: cover;
   width: 30px;
   height: 30px !important;
   display: inline-block;
-}
-
-#hints div {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .abcd {
@@ -231,28 +221,14 @@
   padding: 5px;
 }
 
-.left {
-  z-index: 222;
-  float: left;
-  position: relative;
-  left: 0;
-}
-
-.right {
-  z-index: 222;
-  float: right;
-  position: relative;
-  right: 0;
-}
-
-#playerHPouter {
+#hp-border-left {
   background: black;
   padding: 2px;
   clip-path: polygon(72% 100%, 0 100%, 0 0, 100% 0, 100% 11%);
   width: 305px;
 }
 
-#playerHP {
+#hp-container-left {
   width: 300px;
   height: 40px;
   background: black;
@@ -260,7 +236,7 @@
   clip-path: polygon(70% 100%, 0 100%, 0 0, 100% 0);
 }
 
-#computerHPouter {
+#hp-border-right {
   float: right;
   background: black;
   padding: 2px;
@@ -268,7 +244,7 @@
   width: 305px;
 }
 
-#computerHP {
+#hp-container-right {
   width: 300px;
   height: 40px;
   background: black;
@@ -276,18 +252,11 @@
   clip-path: polygon(0 0, 25% 100%, 100% 100%, 100% 0);
 }
 
-#playerHP span {
+.hp-bar {
   display: block;
   height: 100%;
-  background: #fe6464;
-  background: linear-gradient(0deg, #fe6464 0%, #b30909 58%, #400202 100%);
-}
-
-#computerHP span {
-  display: block;
-  height: 100%;
-  background: #fe6464;
-  background: linear-gradient(0deg, #fe6464 0%, #b30909 58%, #400202 100%);
+  background: background #fe6464;
+  background: background linear-gradient(0deg, #fe6464 0%, #b30909 58%, #400202 100%);
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -11,7 +11,6 @@ let turn = 0;
 let _playerScore = 0;
 let _computerScore = 0;
 let clicks = 0;
-let _choices = '';
 let _beats = '';
 let _loses = '';
 let _playerUndecided = '?';
@@ -29,10 +28,11 @@ updateView();
 //View//
 function updateView() {
     html = '';
+
     _choices = '';
 
     for (i = 0; i < choices.length; i++) {
-        _choices += `<span id="${choices[i].choice}" onclick="_select(this)" onmouseover="_showChoice(this)" onmouseout="hideChoice()" class="choice" style="background-image: url('assets/img/choices/${choices[i].choice}.png');"></span>`;
+        _choices += `<span id="${choices[i].choice}" onclick="_select(this)" onmouseover="_showChoice(this); _showHints(this);" onmouseout="hideChoice()" class="choice" style="background-image: url('assets/img/choices/${choices[i].choice}.png');"></span>`;
     }
 
     html += `
@@ -40,22 +40,26 @@ function updateView() {
 
             <div id="row1">
                 <div id="row1-col1">
-                    <div class="hpbarOuter" id="playerHPouter">
-                            <div id="playerHP" class="hpbar" ><span style="width:${_playerHP}%;"></span></div>
+                    <div id="hp-border-left">
+                        <div id="hp-container-left">
+                            <span class="hp-bar" style="width:${_playerHP}%;"></span>
+                        </div>
                     </div>
                     <h1>Player</h1>
                 </div>
                 <div id="row1-col2">
-                <div id="score-top">
-                    <h1>${_playerScore}</h1>
-                    <div class="seperator">&nbsp;</div>
-                    <h1>${_computerScore}</h1>
+                <div class="score-container">
+                    <div id="score-top">
+                        <h1>${_playerScore}</h1>
+                        <div class="seperator">&nbsp;</div>
+                        <h1>${_computerScore}</h1>
+                    </div>
                 </div>
                 </div>
                 <div id="row1-col3"style="text-align:right;">
-                     <div class="hpbarOuter" id="computerHPouter">
-                        <div id="computerHP" class="hpbar" >
-                            <span style="width:${_computerHP}%;"></span>
+                     <div id="hp-border-right">
+                        <div id="hp-container-right">
+                            <span class="hp-bar" style="width:${_computerHP}%;"></span>
                         </div>                        
                     </div>
                     <h1>Computer</h1>
@@ -98,17 +102,8 @@ function updateView() {
                 
             </div>
             <div id="row3">
-                <div id="hints" class="box">
-                    <h1>Beats</h1>
-                        <div>
-                        ${_beats}
-                        </div>
-                    <h1>Loses to</h1>
-                        <div>
-                        ${_loses}
-                        </div>
-                </div>
-                <div id="gameview" class="box">
+                ${_hintsDiv}
+                <div id="gameview" class="row3-col2 box">
                     <section id="info">
                     <h1>Pick: </h1>
                     <h1 id="hint">${_showName}</h1>
@@ -118,12 +113,7 @@ function updateView() {
                     </div>
                     
                 </div>
-                <div class="box">
-                <h1>player</h1>
-                
-                    <h1>computer</h1>
-                
-                </div>
+            
 
             </div>
         </div>
@@ -148,8 +138,8 @@ function _showChoice(som) {
 }
 
 function _showHints(elem) {
+    _hintsDiv = '';
 
-    console.log('3');
     for (i = 0; i < choices.length; i++) {
 
         if (elem.id == choices[i].choice) {
@@ -190,12 +180,26 @@ function _showHints(elem) {
 
     }
 
+    _hintsDiv = `
+    <div id="hints" class="row3-col1 box">
+        <h1>Beats</h1>
+        <div>
+        ${_beats}
+        </div>
+        <h1>Loses to</h1>
+        <div>
+         ${_loses}
+        </div>  
+    </div>
+    `
+
     updateView();
 }
 
 
 function hideChoice() {
     document.getElementById('hint').innerHTML = '';
+    _hintsDiv = '';
 }
 
 function _select(chosenHand) {
@@ -220,7 +224,6 @@ function aiThinkingTime() {
 
 
 function _chkWinAgainstComputer(player, ai, aiThink) {
-    document.getElementById('gameview').classList.toggle('disabled');
 
     for (i = 0; i < choices.length; i++) {
 
@@ -248,10 +251,15 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
                     _computerHP = x;
                     winner = "Player Wins!";
 
-                    _playerScore++
+
 
                     console.log(20);
-                    if (_computerHP == 0) _computerHP = 100;
+
+                    if (_computerHP == 0) {
+                        _playerScore++
+                        _computerHP = 0
+                        updateView();
+                    }
 
                 }
 
@@ -260,8 +268,11 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
                     _playerHP = x;
                     winner = "Computer wins!";
 
-                    _computerScore++
-                    if (_playerHP == 0) _playerHP = 100;
+                    if (_playerHP == 0) {
+                        _computerScore++
+                        _playerHP = 100
+                        updateView();
+                    }
 
                 }
 
