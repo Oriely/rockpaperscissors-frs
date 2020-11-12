@@ -46,11 +46,11 @@ function updateView() {
                     <h1>Player</h1>
                 </div>
                 <div id="row1-col2">
-                <h1>
-                ${_playerScore}
-                |
-                ${_computerScore}
-                </h1>
+                <div id="score-top">
+                    <h1>${_playerScore}</h1>
+                    <div class="seperator">&nbsp;</div>
+                    <h1>${_computerScore}</h1>
+                </div>
                 </div>
                 <div id="row1-col3"style="text-align:right;">
                      <div class="hpbarOuter" id="computerHPouter">

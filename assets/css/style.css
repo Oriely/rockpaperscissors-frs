@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -36,7 +38,9 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin-bottom: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid black;
 }
 
 .box {
@@ -47,6 +51,7 @@
   font-size: 18px;
   padding: 10px;
   margin: 30px;
+  border: 5px solid black;
 }
 
 .box h1 {
@@ -99,16 +104,44 @@
 
 #row1-col2 {
   font-size: 30px;
-  text-align: center;
 }
 
-#row1-col2 h1 {
-  display: inline-block;
-  background: #272640;
-  padding: 5px;
+#score-top {
+  background: black;
   width: 80%;
-  border: 5px solid black;
   border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  clip-path: polygon(0 0, 100% 0, 81% 100%, 17% 100%);
+  border: 6px solid purple;
+}
+
+#row1-col2 div h1 {
+  display: inline-block;
+  font-size: 48px;
+  font-family: "Righteous", cursive;
+  height: 100%;
+  width: 100%;
+}
+
+#row1-col2 div h1:nth-child(1) {
+  margin-right: 10px;
+  text-align: right;
+}
+
+#row1-col2 div h1:nth-child(2) {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.seperator {
+  border-left: 6px solid purple;
+  height: 100%;
+  padding-top: 50px;
+  margin-left: 6px;
 }
 
 #row2 {
