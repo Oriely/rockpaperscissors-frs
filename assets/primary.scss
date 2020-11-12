@@ -11,12 +11,10 @@ $color-7: #f7ede2;
 $color-8: #f5cac3;
 $color-9: #84a59d;
 $color-10: #f28482;
-
 $c1: #f8efd4;
 $c2: #edc988;
 $c3: #d7385e;
 $c4: #132743;
-
 // reset default values and set sizing to border box...
 * {
     margin: 0;
@@ -26,15 +24,15 @@ $c4: #132743;
 }
 
 #app {
-    position:absolute;
+    position: absolute;
     display: flex;
-    background-color:$c4;
+    background-color: $c4;
     background: url('../img/background.jpg');
-    background-position:center;
-    background-size:cover;
+    background-position: center;
+    background-size: cover;
     justify-content: center;
     align-items: center;
-    align-content:center;
+    align-content: center;
     width: 100vw;
     height: 100vh;
     font: $font;
@@ -42,15 +40,14 @@ $c4: #132743;
 
 #app-inner {
     display: grid;
-    width:1000px;
+    width: 1300px;
     grid-template-rows: 1fr 2fr 2fr;
-    border-radius:100%;
+    border-radius: 100%;
 }
 
 #gameview {
-
-    margin-left:0;
-    margin-right:0;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 #info {
@@ -66,12 +63,12 @@ $c4: #132743;
     height: auto;
     border-radius: 5px;
     font-size: 18px;
-    padding:10px;
-    margin:10px;
+    padding: 10px;
+    margin: 10px;
 }
 
 .box h1 {
-    display:block;
+    display: block;
 }
 
 .handChoice {
@@ -82,8 +79,8 @@ $c4: #132743;
 }
 
 #choices {
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
 }
 
 .choice {
@@ -93,6 +90,7 @@ $c4: #132743;
     opacity: 0.5;
     display: inline-block;
 }
+
 .choiceSelected {
     opacity: 0;
     box-shadow: 0 0 8pt 1pt red;
@@ -109,12 +107,12 @@ $c4: #132743;
 }
 
 #col1 {
-    display:flex;
-    justify-content: center;
-    align-items:center;
+    text-transform: uppercase;
+    color: white;
     width: 100%;
     height: 100%;
-
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 #col2 {
@@ -134,17 +132,17 @@ $c4: #132743;
 
 #score {
     background: $color-7;
-    display:flex;
+    display: flex;
 }
 
 #result {
-    color:white;
-    font-size:20px;
+    color: white;
+    font-size: 20px;
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
-    text-transform:uppercase;
+    text-transform: uppercase;
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 25px darkblue;
 }
 
@@ -166,7 +164,7 @@ $c4: #132743;
     width: 100px;
     border-radius: 100%;
     background: white;
-    border:3px solid black;
+    border: 3px solid black;
 }
 
 .pickedHand h1 {}
@@ -181,7 +179,7 @@ $c4: #132743;
     height: 100px;
     background-size: cover;
     border-radius: 50%;
-    display:block;
+    display: block;
 }
 
 .choiceHint {
@@ -198,64 +196,72 @@ $c4: #132743;
 
 .abcd {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
-    align-content:center; 
-
-
+    align-content: center;
 }
 
 #picks div {
     padding: 5px;
 }
 
-#playerScore{
-   
-}
+#playerScore {}
 
-#computerScore {
-}
+#computerScore {}
 
 .left {
-    z-index:222;
-    float:left;
+    z-index: 222;
+    float: left;
     position: relative;
-    left:0;
-
+    left: 0;
 }
 
 .right {
-    z-index:222;
-    float:right;
-    position:relative;
-    right:0;
+    z-index: 222;
+    float: right;
+    position: relative;
+    right: 0;
 }
 
-.hpbar {
-    width:300px;
-    height:70px;
-    background:white;
-    border:3px solid black;
+#playerHPouter {
+    background: black;
+    padding: 2px;
+    clip-path: polygon(72% 100%, 0 100%, 0 0, 100% 0, 100% 11%);
+    width: 305px;
 }
 
-#playerHP span{
-    display:block;
-    height:100%;
-    background:red;
+#playerHP {
+    width: 300px;
+    height: 70px;
+    background: white;
+    border: 3px solid black;
+    clip-path: polygon(70% 100%, 0 100%, 0 0, 100% 0);
+}
 
+#computerHPouter {
+    // -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 75% 0);
+    background: black;
+    padding: 2px;
+    clip-path: polygon(100% 0, 0 0, 0 10%, 23% 100%, 100% 100%);
+    width: 305px;
+}
 
+#computerHP {
+    width: 300px;
+    height: 70px;
+    background: white;
+    border: 3px solid black;
+    clip-path: polygon(0 0, 25% 100%, 100% 100%, 100% 0);
+}
+
+#playerHP span {
+    display: block;
+    height: 100%;
+    background: red;
 }
 
 #computerHP span {
-    display:block;
-    height:100%;
-    background:red;
-}
-#playerHP:before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    border-top: 80px solid white;
-    border-left: 80px solid red;
-    width: 0;
+    display: block;
+    height: 100%;
+    background: red;
 }

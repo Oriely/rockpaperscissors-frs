@@ -36,11 +36,30 @@ function updateView() {
     }
 
     html += `
+    
     <img class="left" width="500px" src="assets/img/left.png">
         <div id="app-inner">
 
             <div id="col1">
-                <span id="computerPic"></span>
+            <div>
+            <div class="hpbarOuter" id="playerHPouter">
+                    <div id="playerHP" class="hpbar" ><span style="width:${_playerHP}%;"></span></div>
+                    
+                </div>
+                <h1>Player</h1>
+            </div>
+            <div>
+                <span id="computerPic">
+
+                </span>
+                </div>
+            <div style="text-align:right;">
+            <div class="hpbarOuter" id="computerHPouter">
+                    <div id="computerHP" class="hpbar" ><span style="width:${_computerHP}%;"></span></div>
+                    
+                </div>
+                <h1>Computer</h1>
+            </div>
             </div>
             <div id="col2">
                 <div id="picks">
@@ -101,13 +120,14 @@ function updateView() {
                 </div>
                 <div class="box">
                 <h1>player</h1>
-                <div id="playerHP" class="hpbar" ><span style="width:${_playerHP}%;"></span></div>
-                <h1>computer</h1>
-                <div id="computerHP" class="hpbar" ><span style="width:${_computerHP}%;"></span></div>
+                
+                    <h1>computer</h1>
+                
                 </div>
 
             </div>
         </div>
+        
         <img class="right" width="500" src="assets/img/right.png">
         `;
 
@@ -143,7 +163,7 @@ function _showHints(elem) {
                 if (choices[i].beats[o] != undefined) {
 
                     _beats += `<span class="choiceHint" style="background-image: url('assets/img/choices/${choices[i].beats[o]}.png');"></span>`;
-                
+
                 }
 
             }
@@ -163,7 +183,7 @@ function _showHints(elem) {
                 if (choices[i].losesTo[o] != undefined) {
 
                     _loses += `<span class="choiceHint" style="background-image: url('assets/img/choices/${choices[i].losesTo[o]}.png');"></span>`;
-                
+
                 }
 
             }
@@ -203,7 +223,7 @@ function aiThinkingTime() {
 
 function _chkWinAgainstComputer(player, ai, aiThink) {
     document.getElementById('gameview').classList.toggle('disabled');
-    
+
     for (i = 0; i < choices.length; i++) {
 
         // teller opp og kjører en if statement hver gang den teller til den finner player i choices.choice
@@ -225,15 +245,15 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
                 // 
                 if (ai == choices[i].beats[o]) {
 
-                    
+
                     let x = _computerHP - 10;
                     _computerHP = x;
                     winner = "Player Wins!";
-                   
+
                     _playerScore++
-                    
+
                     console.log(20);
-                    if(_computerHP == 0) _computerHP = 100;
+                    if (_computerHP == 0) _computerHP = 100;
 
                 }
 
@@ -241,10 +261,10 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
                     let x = _playerHP - 10;
                     _playerHP = x;
                     winner = "Computer wins!";
-                    
+
                     _computerScore++
-                   if(_playerHP == 0) _playerHP = 100;
-                    
+                    if (_playerHP == 0) _playerHP = 100;
+
                 }
 
             }
@@ -252,15 +272,15 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
             if (ai == choices[i].tie[0]) {
                 let x = playerHP + 10;
                 let y = _computerHP + 10;
-                
+
                 _computerHP = y;
                 winner = '<img src="assets/img/tie.png" height="70px" width="auto">';
-                
+
             }
 
         }
     }
-    
+
     updateView();
 
 }
