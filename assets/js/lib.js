@@ -9,16 +9,29 @@ let turn = 0;
 let _playerScore = 0;
 let _computerScore = 0;
 let clicks = 0;
+let playerChoiceSpan = document.getElementById('playerChoiceSpan');
+let computerChoiceSpan = document.getElementById('computerChoiceSpan');
+
+let _choices = '';
+let _beats = '';
+let _loses = '';
 
 function lg(s) {
     console.log(s);
 }
 
 
-
 //View//
 function updateView() {
     html = '';
+
+
+    _choices = '';
+    for (i = 0; i < choices.length; i++) {
+
+        _choices += `<span id="${choices[i].choice}" onclick="_select(this)" onmouseover="_showChoice(this)" onmouseout="hideChoice()"class="choice" style="background-image: url('assets/img/choices/${choices[i].choice}.png');"></span>`;
+
+    }
 
     html += `
         <div id="col1">
@@ -32,16 +45,16 @@ function updateView() {
             <div></div>
             <div></div>
             <div>
-            <span style="background-image: url('assets/img/choices/${_playerChoice}.png')" class="pickedHand">
-            
+            <span style="background-image: url('assets/img/choices/${_playerChoice}.png')" id="playerChoiceSpan" class="pickedHand">
+            <h1>?</h1>
             </span>
             </div>
             <div id="result">
             <h1>${winner}</h1>
             </div>
             <div>
-            <span style="background-image: url('assets/img/choices/${_computerMove}.png')" class="pickedHand">
-            
+            <span style="background-image: url('assets/img/choices/${_computerMove}.png')" id="computerChoiceSpan" class="pickedHand">
+            <h1>?</h1>
             </span>
             </div>
             <div>${_playerChoice}</div>
@@ -55,16 +68,29 @@ function updateView() {
             </div>
         </div>
         <div id="col3">
+            <div id="hints" class="box">
+            <h1>Beats</h1>
+            <div>
+            ${_beats}
+            </div>
+            <h1>Loses to</h1>
+            <div>
+            ${_loses}
+            </div>
+            </div>
             <div id="gameview" class="box">
                 <section id="info">
                 <h1>Pick: </h1>
-                <h1 id="hint">a</h1>
+                <h1 id="hint">${_hint}</h1>
                 </section>
-                <div id="choices">` + `<script>alert()</script>`
-    for (i = 0; i < choices.length; i++) {
-        html += `<span id="${choices[i].choice}" onclick="_select(this)" onmouseover="_showChoice(this)" onmouseout="hideChoice()"class="choice" style="background-image: url('assets/img/choices/${choices[i].choice}.png');"></span>`;
-    }
-    `4444`
+                <div id="choices">
+                ${_choices}
+                </div>
+                
+            </div>
+
+        </div>
+                `
 
     _app.innerHTML = html;
 }
@@ -80,7 +106,30 @@ function _showChoice(som) {
     _hint = som.id;
 
 
+
     document.getElementById('hint').innerHTML = _hint;
+    for (i = 0; i < choices.length; i++) {
+        if (som.id == choices[i].choice) {
+            _beats = '';
+            for (o = 0; o < choices.length; o++) {
+                if (choices[i].beats[o] != undefined) {
+                    _beats += `<span onclick="_select(this)" onmouseover="_showChoice(this)" onmouseout="hideChoice()"class="choiceHint" style="background-image: url('assets/img/choices/${choices[i].beats[o]}.png');"></span>`;
+                }
+            }
+        } else console.log('3');
+    }
+    for (i = 0; i < choices.length; i++) {
+        if (som.id == choices[i].choice) {
+            _loses = '';
+            for (o = 0; o < choices.length; o++) {
+                if (choices[i].losesTo[o] != undefined) {
+                    _loses += `<span onclick="_select(this)" onmouseover="_showChoice(this)" onmouseout="hideChoice()"class="choiceHint" style="background-image: url('assets/img/choices/${choices[i].losesTo[o]}.png');"></span>`;
+                }
+            }
+        }
+    }
+    updateView();
+
 }
 
 function hideChoice() {
@@ -88,15 +137,13 @@ function hideChoice() {
 }
 
 function _select(chosenHand) {
-    if (clicks = 3) {
-        _playerChoice = chosenHand.id;
-        aiRandom();
-        testWin(_playerChoice, _computerMove)
 
-    } else {
-        clicks++
-        updateView()
-    }
+    _playerChoice = chosenHand.id;
+    aiRandom();
+    testWin(_playerChoice, _computerMove);
+
+    updateView()
+
 }
 
 function aiRandom() {
@@ -133,6 +180,7 @@ function testWin(player, ai) {
                 if (ai == choices[i].beats[o]) {
                     winner = "Player Wins!";
                     _playerScore++
+
                 }
 
                 if (ai == choices[i].losesTo[o]) {

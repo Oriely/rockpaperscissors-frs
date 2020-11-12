@@ -104,6 +104,7 @@ $color-10: #f28482;
     justify-content: center;
     align-items: center;
     background: $color-6;
+    padding: 50px;
 }
 
 #score {
@@ -130,11 +131,18 @@ $color-10: #f28482;
 }
 
 .pickedHand {
-    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-size: contain !important;
     height: 100px;
     width: 100px;
-    display: inline-block;
+    border-radius: 100%;
+    background: white;
 }
+
+.pickedHand h1 {}
 
 .disable {
     cursor: none;
@@ -146,4 +154,16 @@ $color-10: #f28482;
     height: 200px;
     background-size: cover;
     border-radius: 50%;
+}
+
+.choiceHint {
+    background-size: cover;
+    width: 30px;
+    height: 30px !important;
+    display: inline-block;
+}
+
+#hints div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }

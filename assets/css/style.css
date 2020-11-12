@@ -89,6 +89,7 @@
   justify-content: center;
   align-items: center;
   background: #f6bd60;
+  padding: 50px;
 }
 
 #score {
@@ -115,10 +116,15 @@
 }
 
 .pickedHand {
-  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-size: contain !important;
   height: 100px;
   width: 100px;
-  display: inline-block;
+  border-radius: 100%;
+  background: white;
 }
 
 .disable {
@@ -131,6 +137,18 @@
   height: 200px;
   background-size: cover;
   border-radius: 50%;
+}
+
+.choiceHint {
+  background-size: cover;
+  width: 30px;
+  height: 30px !important;
+  display: inline-block;
+}
+
+#hints div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 /*# sourceMappingURL=style.css.map */
