@@ -9,7 +9,6 @@
 #app {
   position: absolute;
   display: flex;
-  background-color: #132743;
   background: url("../img/background.jpg");
   background-position: center;
   background-size: cover;
@@ -41,13 +40,13 @@
 }
 
 .box {
-  color: #264653;
-  background: #f8efd4;
+  color: white;
+  background: #4d194d;
   height: auto;
   border-radius: 5px;
   font-size: 18px;
   padding: 10px;
-  margin: 10px;
+  margin: 30px;
 }
 
 .box h1 {
@@ -89,7 +88,7 @@
   display: block;
 }
 
-#col1 {
+#row1 {
   text-transform: uppercase;
   color: white;
   width: 100%;
@@ -98,7 +97,21 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-#col2 {
+#row1-col2 {
+  font-size: 30px;
+  text-align: center;
+}
+
+#row1-col2 h1 {
+  display: inline-block;
+  background: #272640;
+  padding: 5px;
+  width: 80%;
+  border: 5px solid black;
+  border-radius: 5px;
+}
+
+#row2 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,14 +120,13 @@
   text-transform: uppercase;
 }
 
-#col3 {
+#row3 {
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
 #score {
-  background: #f7ede2;
   display: flex;
 }
 
@@ -209,13 +221,14 @@
 
 #playerHP {
   width: 300px;
-  height: 70px;
-  background: white;
+  height: 40px;
+  background: black;
   border: 3px solid black;
   clip-path: polygon(70% 100%, 0 100%, 0 0, 100% 0);
 }
 
 #computerHPouter {
+  float: right;
   background: black;
   padding: 2px;
   clip-path: polygon(100% 0, 0 0, 0 10%, 23% 100%, 100% 100%);
@@ -224,8 +237,8 @@
 
 #computerHP {
   width: 300px;
-  height: 70px;
-  background: white;
+  height: 40px;
+  background: black;
   border: 3px solid black;
   clip-path: polygon(0 0, 25% 100%, 100% 100%, 100% 0);
 }
@@ -233,13 +246,15 @@
 #playerHP span {
   display: block;
   height: 100%;
-  background: red;
+  background: #fe6464;
+  background: linear-gradient(0deg, #fe6464 0%, #b30909 58%, #400202 100%);
 }
 
 #computerHP span {
   display: block;
   height: 100%;
-  background: red;
+  background: #fe6464;
+  background: linear-gradient(0deg, #fe6464 0%, #b30909 58%, #400202 100%);
 }
 
 /*# sourceMappingURL=style.css.map */

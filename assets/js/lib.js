@@ -36,32 +36,32 @@ function updateView() {
     }
 
     html += `
-    
-    <img class="left" width="500px" src="assets/img/left.png">
         <div id="app-inner">
 
-            <div id="col1">
-            <div>
-            <div class="hpbarOuter" id="playerHPouter">
-                    <div id="playerHP" class="hpbar" ><span style="width:${_playerHP}%;"></span></div>
-                    
+            <div id="row1">
+                <div id="row1-col1">
+                    <div class="hpbarOuter" id="playerHPouter">
+                            <div id="playerHP" class="hpbar" ><span style="width:${_playerHP}%;"></span></div>
+                    </div>
+                    <h1>Player</h1>
                 </div>
-                <h1>Player</h1>
-            </div>
-            <div>
-                <span id="computerPic">
-
-                </span>
+                <div id="row1-col2">
+                <h1>
+                ${_playerScore}
+                |
+                ${_computerScore}
+                </h1>
                 </div>
-            <div style="text-align:right;">
-            <div class="hpbarOuter" id="computerHPouter">
-                    <div id="computerHP" class="hpbar" ><span style="width:${_computerHP}%;"></span></div>
-                    
+                <div id="row1-col3"style="text-align:right;">
+                     <div class="hpbarOuter" id="computerHPouter">
+                        <div id="computerHP" class="hpbar" >
+                            <span style="width:${_computerHP}%;"></span>
+                        </div>                        
+                    </div>
+                    <h1>Computer</h1>
                 </div>
-                <h1>Computer</h1>
             </div>
-            </div>
-            <div id="col2">
+            <div id="row2">
                 <div id="picks">
                     <div> 
                     
@@ -97,7 +97,7 @@ function updateView() {
                 </div>
                 
             </div>
-            <div id="col3">
+            <div id="row3">
                 <div id="hints" class="box">
                     <h1>Beats</h1>
                         <div>
@@ -127,8 +127,6 @@ function updateView() {
 
             </div>
         </div>
-        
-        <img class="right" width="500" src="assets/img/right.png">
         `;
 
     _app.innerHTML = html;

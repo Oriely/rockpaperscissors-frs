@@ -1,20 +1,7 @@
 @use 'fonts';
 $font: 100% 'Ubuntu Condensed',
 sans-serif;
-$color-1: #264653;
-$color-2: #2a9d8f;
-$color-3: #e9c46a;
-$color-4: #f4a261;
-$color-5: #e76f51;
-$color-6: #f6bd60;
-$color-7: #f7ede2;
-$color-8: #f5cac3;
-$color-9: #84a59d;
-$color-10: #f28482;
-$c1: #f8efd4;
-$c2: #edc988;
-$c3: #d7385e;
-$c4: #132743;
+$color-1: #4d194d;
 // reset default values and set sizing to border box...
 * {
     margin: 0;
@@ -26,7 +13,6 @@ $c4: #132743;
 #app {
     position: absolute;
     display: flex;
-    background-color: $c4;
     background: url('../img/background.jpg');
     background-position: center;
     background-size: cover;
@@ -58,13 +44,13 @@ $c4: #132743;
 }
 
 .box {
-    color: $color-1;
-    background: $c1;
+    color: white;
+    background: $color-1;
     height: auto;
     border-radius: 5px;
     font-size: 18px;
     padding: 10px;
-    margin: 10px;
+    margin: 30px;
 }
 
 .box h1 {
@@ -106,7 +92,7 @@ $c4: #132743;
     display: block;
 }
 
-#col1 {
+#row1 {
     text-transform: uppercase;
     color: white;
     width: 100%;
@@ -115,7 +101,25 @@ $c4: #132743;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-#col2 {
+#row1-col1 {}
+
+#row1-col2 {
+    font-size: 30px;
+    text-align: center;
+}
+
+#row1-col2 h1 {
+    display: inline-block;
+    background: #272640;
+    padding: 5px;
+    width: 80%;
+    border: 5px solid black;
+    border-radius: 5px;
+}
+
+#row1-col3 {}
+
+#row2 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,14 +128,13 @@ $c4: #132743;
     text-transform: uppercase;
 }
 
-#col3 {
+#row3 {
     display: grid;
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
 #score {
-    background: $color-7;
     display: flex;
 }
 
@@ -232,13 +235,14 @@ $c4: #132743;
 
 #playerHP {
     width: 300px;
-    height: 70px;
-    background: white;
+    height: 40px;
+    background: black;
     border: 3px solid black;
     clip-path: polygon(70% 100%, 0 100%, 0 0, 100% 0);
 }
 
 #computerHPouter {
+    float: right;
     // -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 75% 0);
     background: black;
     padding: 2px;
@@ -248,8 +252,8 @@ $c4: #132743;
 
 #computerHP {
     width: 300px;
-    height: 70px;
-    background: white;
+    height: 40px;
+    background: black;
     border: 3px solid black;
     clip-path: polygon(0 0, 25% 100%, 100% 100%, 100% 0);
 }
@@ -257,11 +261,13 @@ $c4: #132743;
 #playerHP span {
     display: block;
     height: 100%;
-    background: red;
+    background: rgb(254, 100, 100);
+    background: linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rgba(179, 9, 9, 1) 58%, rgba(64, 2, 2, 1) 100%);
 }
 
 #computerHP span {
     display: block;
     height: 100%;
-    background: red;
+    background: rgb(254, 100, 100);
+    background: linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rgba(179, 9, 9, 1) 58%, rgba(64, 2, 2, 1) 100%);
 }
