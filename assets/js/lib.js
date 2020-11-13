@@ -257,7 +257,7 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
 
                     if (_computerHP == 0) {
                         _playerScore++
-                        _computerHP = 0
+                        _computerHP = 100;
                         updateView();
                     }
 
