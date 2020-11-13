@@ -3,22 +3,25 @@ let html;
 let _app = document.getElementById('app');
 let playerChoiceSpan;
 let computerChoiceSpan;
-let _computerMove = '';
-let _playerChoice = '';
-let _showName;
+
+let _showName = '';
 let winner = '';
 let turn = 0;
-let _playerScore = 0;
-let _computerScore = 0;
 let clicks = 0;
 let _beats = '';
 let _loses = '';
-let _playerUndecided = '?';
-let _computerUndecided = '?';
 let _hintsDiv;
-let _playerHP = 100;
-let _computerHP = 100;
 
+let _player2choice = '';
+let _player1choice = '';
+let _player1score = 0;
+let _player2score = 0;
+let _player1undecided = '?';
+let _player2undecided = '?';
+let _player1hp = 100;
+let _player2hp = 100;
+let _player1name = 'Rolf';
+let _player2name = 'Computer';
 
 function lg(s) {
     console.log(s);
@@ -32,7 +35,7 @@ function updateView() {
     _choices = '';
 
     for (i = 0; i < choices.length; i++) {
-        _choices += `<span id="${choices[i].choice}" onclick="_select(this)" onmouseover="_showChoice(this); _showHints(this);" onmouseout="hideChoice()" class="choice" style="background-image: url('assets/img/choices/${choices[i].choice}.png');"></span>`;
+        _choices += `<span id="${choices[i].choice}" onclick="_select(this)" onmouseover="_showChoice(this);" onmouseout="hideChoice()" class="choice" style="background-image: url('assets/img/choices/${choices[i].choice}.png');"></span>`;
     }
 
     html += `
@@ -40,69 +43,66 @@ function updateView() {
 
             <div id="row1">
                 <div id="row1-col1">
+                <h1>${_player1name}</h1>
                     <div id="hp-border-left">
                         <div id="hp-container-left">
-                            <span class="hp-bar" style="width:${_playerHP}%;"></span>
+                            <span class="hp-bar" style="width:${_player1hp}%;"></span>
                         </div>
                     </div>
-                    <h1>Player</h1>
+                    
                 </div>
                 <div id="row1-col2">
                 <div class="score-container">
+                <div id="score-top-border">
                     <div id="score-top">
-                        <h1>${_playerScore}</h1>
+                        <h1>${_player1score}</h1>
                         <div class="seperator">&nbsp;</div>
-                        <h1>${_computerScore}</h1>
+                        <h1>${_player2score}</h1>
                     </div>
+                </div>
                 </div>
                 </div>
                 <div id="row1-col3"style="text-align:right;">
+                <h1>${_player2name}</h1>
                      <div id="hp-border-right">
                         <div id="hp-container-right">
-                            <span class="hp-bar" style="width:${_computerHP}%;"></span>
+                            <span class="hp-bar" style="width:${_player2hp}%;"></span>
                         </div>                        
                     </div>
-                    <h1>Computer</h1>
+                    
                 </div>
             </div>
             <div id="row2">
                 <div id="picks">
-                    <div> 
-                    
-                    </div>
-                    <div>
-                    
-                    </div>
-                    <div>
-                    
-                    </div>
+
                 <div class="abcd">
-                    <span style="background-image: url('assets/img/choices/${_playerChoice}.png')"  class="pickedHand">
-                    <h1 id="playerChoiceSpan">${_playerUndecided}</h1>
+                    <span style="background-image: url('assets/img/choices/${_player1choice}.png')"  class="pickedHand">
+                    <h1 id="playerChoiceSpan">${_player1undecided}</h1>
                 </span>
                 </div>
-                    <div id="result">
+                <div id="result">
                     <h1>${winner}</h1>
                 </div>
                 <div class="abcd">
-                    <span style="background-image: url('assets/img/choices/${_computerMove}.png')" id="computerChoiceSpan" class="pickedHand">
-                        <h1 id="computerChoiceSpan">${_computerUndecided}</h1>
+                    <span style="background-image: url('assets/img/choices/${_player2choice}.png')" id="computerChoiceSpan" class="pickedHand">
+                        <h1 id="computerChoiceSpan">${_player2undecided}</h1>
                     </span>
                 </div>
                 <div>
-                    ${ (_playerChoice == '' ? 'Player hand?' : _playerChoice) }
+                    ${ (_player1choice == '' ? `&nbsp;` : _player1choice) }
                 </div>
                 <div>
                 
                 </div>
                 <div>
-                    ${ (_computerMove == '' ? 'Computer hand?' : _computerMove) }
+                    ${ (_player2choice == '' ? `&nbsp;` : _player2choice) }
                 </div>
                 </div>
-                
             </div>
             <div id="row3">
+                <div id="hints-container " class="row3-col1 ">
                 ${_hintsDiv}
+                </div>
                 <div id="gameview" class="row3-col2 box">
                     <section id="info">
                     <h1>Pick: </h1>
@@ -112,7 +112,7 @@ function updateView() {
                     ${_choices}
                     </div>
                     
-                </div>
+                
             
 
             </div>
@@ -124,9 +124,6 @@ function updateView() {
 }
 
 updateView();
-
-
-
 
 
 //controller//
@@ -181,7 +178,7 @@ function _showHints(elem) {
     }
 
     _hintsDiv = `
-    <div id="hints" class="row3-col1 box">
+    <div id="hints" class="box">
         <h1>Beats</h1>
         <div>
         ${_beats}
@@ -204,17 +201,17 @@ function hideChoice() {
 
 function _select(chosenHand) {
 
-    _playerUndecided = ' ';
-    _computerUndecided = ' ';
-    _playerChoice = chosenHand.id;
+    _player1undecided = ' ';
+    _player2undecided = ' ';
+    _player1choice = chosenHand.id;
 
     aiRandom();
-    _chkWinAgainstComputer(_playerChoice, _computerMove, aiThinkingTime());
+    _chkWinAgainstComputer(_player1choice, _player2choice, aiThinkingTime());
 
 }
 
 function aiRandom() {
-    return _computerMove = choices[Math.floor(Math.random() * choices.length)].choice;
+    return _player2choice = choices[Math.floor(Math.random() * choices.length)].choice;
 }
 
 function aiThinkingTime() {
@@ -245,32 +242,32 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
                 // sjekker funnet 'O'
                 // 
                 if (ai == choices[i].beats[o]) {
+                    
 
-
-                    let x = _computerHP - 10;
-                    _computerHP = x;
-                    winner = "Player Wins!";
-
-
+                    let x = _player2hp - Math.random() * 31;
+                    _player2hp = x;
+                    winner = `${_player1name} wins`;
+ 
 
                     console.log(20);
 
-                    if (_computerHP == 0) {
-                        _playerScore++
-                        _computerHP = 100;
+                    if (_player2hp <= 0) {
+                        _player1score++
+                        _player2hp = 100;
+                        _player2hp = 100;
                         updateView();
                     }
 
                 }
 
                 if (ai == choices[i].losesTo[o]) {
-                    let x = _playerHP - 10;
-                    _playerHP = x;
-                    winner = "Computer wins!";
+                    let x = _player1hp - Math.random() * 31;
+                    _player1hp = x;
+                    winner = `${_player2name} wins`;
 
-                    if (_playerHP == 0) {
-                        _computerScore++
-                        _playerHP = 100
+                    if (_player1hp <= 0) {
+                        _player2score++
+                        _player1hp = 100
                         updateView();
                     }
 
@@ -279,10 +276,10 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
             }
 
             if (ai == choices[i].tie[0]) {
-                let x = playerHP + 10;
-                let y = _computerHP + 10;
+                let x = player1hp    + 10;
+                let y = _player2hp + 10;
 
-                _computerHP = y;
+                _player2hp = y;
                 winner = '<img src="assets/img/tie.png" height="70px" width="auto">';
 
             }

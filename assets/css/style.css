@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -44,14 +45,16 @@
 }
 
 .box {
-  color: white;
-  background: #4d194d;
   height: auto;
   border-radius: 5px;
   font-size: 18px;
   padding: 10px;
   margin: 30px;
-  border: 5px solid black;
+  border: 1px solid black;
+  height: 100%;
+  box-shadow: 3px 3px black;
+  background: url("../img/diagmonds.png");
+  background-color: #770e7e;
 }
 
 .box h1 {
@@ -74,7 +77,6 @@
   background-size: cover;
   width: 37px;
   height: 37px;
-  opacity: 0.5;
   display: inline-block;
 }
 
@@ -98,16 +100,47 @@
   color: white;
   width: 100%;
   height: 100%;
-  display: grid;
+  display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr;
+  font-family: "Black Ops One", cursive;
+  min-width: 0;
+  min-height: 0;
+}
+
+#row1-col1 {
+  text-shadow: 1px 1px 10px black, 0 0 10px black, 0 0 10px black;
+}
+
+#row1-col1 h1 {
+  margin-left: 10px;
+  margin-bottom: -10px;
 }
 
 #row1-col2 {
   font-size: 30px;
 }
 
-#score-top {
+#row1-col3 {
+  text-shadow: 1px 1px 10px black, 0 0 10px black, 0 0 10px black;
+}
+
+#row1-col3 h1 {
+  margin-right: 10px;
+  margin-bottom: -10px;
+}
+
+.score-container {
+  width: 100%;
+}
+
+#score-top-border {
+  clip-path: polygon(9% 0, 91% 0, 76% 100%, 23% 100%);
   background: black;
+}
+
+#score-top {
+  background: rgba(98, 98, 98, 0.428);
+  background: linear-gradient(0deg, #626262 0%, #4b4444 49%, #171717 100%);
   width: 80%;
   border-radius: 5px;
   display: flex;
@@ -116,16 +149,16 @@
   align-items: center;
   align-content: center;
   clip-path: polygon(0 0, 100% 0, 81% 100%, 17% 100%);
-  border: 6px solid purple;
+  border: 4px solid black;
+  margin: auto;
 }
 
 #row1-col2 div h1 {
   display: inline-block;
   font-size: 48px;
-  font-family: "Righteous", cursive;
+  font-family: "Black Ops One", cursive;
   height: 100%;
   width: 100%;
-  margin: 10px;
 }
 
 #row1-col2 div h1:nth-child(1) {
@@ -137,7 +170,7 @@
 }
 
 .seperator {
-  border-left: 6px solid purple;
+  border-left: 6px solid black;
   height: 100%;
   padding-top: 50px;
   margin-left: 6px;
@@ -151,6 +184,7 @@
   height: 100%;
   text-transform: uppercase;
   color: white;
+  font-weight: bold;
 }
 
 #row3 {
@@ -173,6 +207,7 @@
 }
 
 #result {
+  width: 500px;
   color: white;
   font-size: 20px;
   display: flex;
@@ -181,13 +216,16 @@
   align-items: center;
   text-transform: uppercase;
   text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 25px darkblue;
+  flex: 0 0 25em;
 }
 
 #picks {
   padding: 50px;
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: auto auto auto;
   text-align: center;
+  background: rgba(37, 37, 37, 0.524);
+  border-radius: 20px;
 }
 
 .pickedHand {
@@ -196,11 +234,10 @@
   align-items: center;
   align-content: center;
   background-size: contain !important;
-  height: 100px;
-  width: 100px;
-  border-radius: 100%;
-  background: white;
+  height: 90px;
   border: 3px solid black;
+  border-radius: 50%;
+  width: 90px;
 }
 
 .choiceHint {

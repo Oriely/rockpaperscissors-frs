@@ -1,7 +1,7 @@
 @use 'fonts';
 $font: 100% 'Ubuntu Condensed',
 sans-serif;
-$color-1: #4d194d;
+$color-1: rgb(32, 32, 32);
 $hp-bar-color: background rgb(254, 100, 100);
 $hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rgba(179, 9, 9, 1) 58%, rgba(64, 2, 2, 1) 100%);
 // reset default values and set sizing to border box...
@@ -48,14 +48,18 @@ $hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rg
 }
 
 .box {
-    color: white;
-    background: $color-1;
+   
+    
     height: auto;
     border-radius: 5px;
     font-size: 18px;
     padding: 10px;
     margin: 30px;
-    border: 5px solid black;
+    border: 1px solid black;
+    height:100%;
+    box-shadow: 3px 3px black;
+    background: url('../img/diagmonds.png') ;
+    background-color: rgb(119, 14, 126);
 }
 
 .box h1 {
@@ -78,7 +82,6 @@ $hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rg
     background-size: cover;
     width: 37px;
     height: 37px;
-    opacity: 0.5;
     display: inline-block;
 }
 
@@ -102,20 +105,52 @@ $hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rg
     color: white;
     width: 100%;
     height: 100%;
-    display: grid;
+    display: inline-grid;
     grid-template-columns: 1fr 1fr 1fr;
+    font-family: 'Black Ops One', cursive;
+    min-width: 0; 
+    min-height: 0;
 }
 
-#row1-col1 {}
+#row1-col1 {
+    text-shadow: 1px 1px 10px black, 0 0 10px black, 0 0 10px black;
+    
+}
+
+#row1-col1 h1 {
+    margin-left:10px;
+    margin-bottom:-10px;
+
+}
+
 
 #row1-col2 {
     font-size: 30px;
+
 }
 
-.score-container {}
+#row1-col3 {
+    text-shadow: 1px 1px 10px black, 0 0 10px black, 0 0 10px black;
+
+}
+
+#row1-col3 h1 {
+    margin-right:10px;
+    margin-bottom:-10px;
+}
+
+.score-container {
+    width:100%;
+}
+
+#score-top-border {
+    clip-path: polygon(9% 0, 91% 0, 76% 100%, 23% 100%);
+    background:black;
+}
 
 #score-top {
-    background: black;
+    background: rgba(98, 98, 98, 0.428);
+background: linear-gradient(0deg, rgba(98,98,98,1) 0%, rgba(75,68,68,1) 49%, rgba(23,23,23,1) 100%);
     width: 80%;
     border-radius: 5px;
     display: flex;
@@ -124,16 +159,17 @@ $hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rg
     align-items: center;
     align-content: center;
     clip-path: polygon(0 0, 100% 0, 81% 100%, 17% 100%);
-    border: 6px solid purple;
+    border: 4px solid black;
+    
+    margin :auto;
 }
 
 #row1-col2 div h1 {
     display: inline-block;
     font-size: 48px;
-    font-family: 'Righteous', cursive;
+    font-family: 'Black Ops One', cursive;
     height: 100%;
     width: 100%;
-    margin: 10px;
 }
 
 #row1-col2 div h1:nth-child(1) {
@@ -145,7 +181,7 @@ $hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rg
 }
 
 .seperator {
-    border-left: 6px solid purple;
+    border-left: 6px solid black;
     height: 100%;
     padding-top: 50px;
     margin-left: 6px;
@@ -161,6 +197,7 @@ $hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rg
     height: 100%;
     text-transform: uppercase;
     color: white;
+    font-weight:bold;
 }
 
 #row3 {
@@ -183,6 +220,7 @@ $hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rg
 }
 
 #result {
+    width:500px;
     color: white;
     font-size: 20px;
     display: flex;
@@ -191,13 +229,17 @@ $hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rg
     align-items: center;
     text-transform: uppercase;
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 25px darkblue;
+    
+    flex: 0 0 25em;
 }
 
 #picks {
     padding: 50px;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: auto auto auto;
     text-align: center;
+    background: rgba(37, 37, 37, 0.524);
+    border-radius:20px;
 }
 
 .pickedHand {
@@ -206,11 +248,10 @@ $hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rg
     align-items: center;
     align-content: center;
     background-size: contain !important;
-    height: 100px;
-    width: 100px;
-    border-radius: 100%;
-    background: white;
-    border: 3px solid black;
+    height: 90px;
+    border:3px solid black;
+    border-radius:50%;
+    width: 90px;
 }
 
 .choiceHint {
