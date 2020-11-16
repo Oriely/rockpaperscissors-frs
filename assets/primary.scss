@@ -24,6 +24,7 @@ $hp-bar-gradient: background linear-gradient(0deg, rgba(254, 100, 100, 1) 0%, rg
     width: 100vw;
     height: 100vh;
     font: $font;
+    font-family: 'Black Ops One', cursive;
 }
 
 #app-inner {
@@ -203,12 +204,29 @@ background: linear-gradient(0deg, rgba(98,98,98,1) 0%, rgba(75,68,68,1) 49%, rgb
 #row3 {
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "hints gameui exta";
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: 280px;
+    grid-template-areas: "hints gameui extra";
+    min-height: 0;
+    min-width: 0;
+    color: white;
+    text-shadow: 2px 2px 4px #000000
 }
 
 .row3-col1 {
     grid-area: hints;
+}
+
+#beats {
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;  
+    float:left;
+}
+
+#loses-to {
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr ;  
+    float:right;
 }
 
 .row3-col2 {
@@ -221,8 +239,8 @@ background: linear-gradient(0deg, rgba(98,98,98,1) 0%, rgba(75,68,68,1) 49%, rgb
 
 #result {
     width:500px;
-    color: white;
-    font-size: 20px;
+    color: white;   
+    font-size: 60px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -238,7 +256,6 @@ background: linear-gradient(0deg, rgba(98,98,98,1) 0%, rgba(75,68,68,1) 49%, rgb
     display: grid;
     grid-template-columns: auto auto auto;
     text-align: center;
-    background: rgba(37, 37, 37, 0.524);
     border-radius:20px;
 }
 
@@ -248,10 +265,13 @@ background: linear-gradient(0deg, rgba(98,98,98,1) 0%, rgba(75,68,68,1) 49%, rgb
     align-items: center;
     align-content: center;
     background-size: contain !important;
-    height: 90px;
+    height: 120px;
     border:3px solid black;
     border-radius:50%;
-    width: 90px;
+    width: 120px;
+    margin:25px;
+    background-color:rgb(64, 64, 64);
+    font-size:40px;
 }
 
 .choiceHint {
@@ -259,6 +279,7 @@ background: linear-gradient(0deg, rgba(98,98,98,1) 0%, rgba(75,68,68,1) 49%, rgb
     width: 30px;
     height: 30px !important;
     display: inline-block;
+    margin:3px;
 }
 
 #hints div {}
@@ -268,6 +289,8 @@ background: linear-gradient(0deg, rgba(98,98,98,1) 0%, rgba(75,68,68,1) 49%, rgb
     justify-content: center;
     align-items: center;
     align-content: center;
+    border-radius:20px;
+    background-color: rgba(64, 64, 64, 0.476);
 }
 
 #picks div {
@@ -311,4 +334,35 @@ background: linear-gradient(0deg, rgba(98,98,98,1) 0%, rgba(75,68,68,1) 49%, rgb
     height: 100%;
     background: $hp-bar-color;
     background: $hp-bar-gradient;
+}
+
+#logs {    
+    scrollbar-width: 3px; 
+    overflow-x: hidden;
+    overflow:scroll;
+    overflow-x:hidden;
+}
+
+#history {
+    margin-top:10px;
+    display:flex;
+    flex-direction:column;
+
+}
+
+#logs span {
+    margin: 2px;
+}
+
+#stats {
+    display:flex; 
+    flex-direction:row;
+    justify-content:space-between;
+}
+
+#tophints {
+    display:flex; 
+    flex-direction:row;
+    justify-content:space-between;
+
 }

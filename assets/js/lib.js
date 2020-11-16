@@ -3,15 +3,19 @@ let html;
 let _app = document.getElementById('app');
 let playerChoiceSpan;
 let computerChoiceSpan;
+let something;
+
 
 let _showName = '';
 let winner = '';
-let turn = 0;
-let clicks = 0;
 let _beats = '';
 let _loses = '';
 let _hintsDiv;
+let _history = [];
 
+
+
+let _gameCount = 0;
 let _player2choice = '';
 let _player1choice = '';
 let _player1score = 0;
@@ -20,8 +24,9 @@ let _player1undecided = '?';
 let _player2undecided = '?';
 let _player1hp = 100;
 let _player2hp = 100;
-let _player1name = 'Rolf';
+let _player1name = 'Kristian';
 let _player2name = 'Computer';
+
 
 function lg(s) {
     console.log(s);
@@ -30,14 +35,16 @@ function lg(s) {
 updateView();
 //View//
 function updateView() {
+    let _historyDiv = document.getElementById('logs');
     html = '';
 
     _choices = '';
 
     for (i = 0; i < choices.length; i++) {
-        _choices += `<span id="${choices[i].choice}" onclick="_select(this)" onmouseover="_showChoice(this);" onmouseout="hideChoice()" class="choice" style="background-image: url('assets/img/choices/${choices[i].choice}.png');"></span>`;
+        _choices += `<span id="${choices[i].choice}" onclick="_select(this)" onmouseover="_showChoice(this);_showHints(this);" onmouseout="hideChoice()" class="choice" style="background-image: url('assets/img/choices/${choices[i].choice}.png');"></span>`;
     }
 
+    
     html += `
         <div id="app-inner">
 
@@ -76,16 +83,16 @@ function updateView() {
                 <div id="picks">
 
                 <div class="abcd">
-                    <span style="background-image: url('assets/img/choices/${_player1choice}.png')"  class="pickedHand">
+                    <span style="background-image: url('assets/img/choices/${_player1choice}.png')" class="pickedHand">
                     <h1 id="playerChoiceSpan">${_player1undecided}</h1>
                 </span>
                 </div>
                 <div id="result">
-                    <h1>${winner}</h1>
+                    <h1>VS</h1>
                 </div>
                 <div class="abcd">
-                    <span style="background-image: url('assets/img/choices/${_player2choice}.png')" id="computerChoiceSpan" class="pickedHand">
-                        <h1 id="computerChoiceSpan">${_player2undecided}</h1>
+                    <span style="background-image: url('assets/img/choices/${_player2choice}.png')" class="pickedHand">
+                        <h1>${_player2undecided}</h1>
                     </span>
                 </div>
                 <div>
@@ -100,8 +107,7 @@ function updateView() {
                 </div>
             </div>
             <div id="row3">
-                <div id="hints-container " class="row3-col1 ">
-                ${_hintsDiv}
+                <div id="hints-container" class="row3-col1 ">
                 </div>
                 <div id="gameview" class="row3-col2 box">
                     <section id="info">
@@ -111,8 +117,15 @@ function updateView() {
                     <div id="choices">
                     ${_choices}
                     </div>
-                    
-                
+                </div>
+                <div id="logs" class="row3-col3 box">
+                <div>
+                 <div id="stats"><p>How many rounds: ${_gameCount}</p> <p></p> </div>
+                 <div id="history">
+                ${logs()}
+
+                </div>
+                </div> 
             
 
             </div>
@@ -123,15 +136,28 @@ function updateView() {
 
 }
 
-updateView();
-
+function _hoverView() {
+    document.getElementById('hints-container').innerHTML = _hintsDiv;
+}
 
 //controller//
 function _showChoice(som) {
     _showName = som.id;
     document.getElementById('hint').innerHTML = _showName;
+}
 
+function logs() {
+    something = '';    
 
+    if(_history.length == 0) {
+        return '';
+    }
+
+        for(x = _history.length - 1; x >= 0; x--) {
+            something += '<span>' + _history[x] + '</span>';
+            
+        }
+        return something;
 }
 
 function _showHints(elem) {
@@ -179,24 +205,25 @@ function _showHints(elem) {
 
     _hintsDiv = `
     <div id="hints" class="box">
-        <h1>Beats</h1>
-        <div>
+        <div id="tophints"><h1>Beats</h1><h1>Loses to</h1></div>
+        <div id="beats">
         ${_beats}
         </div>
-        <h1>Loses to</h1>
-        <div>
+        
+        <div id="loses-to">
          ${_loses}
         </div>  
     </div>
     `
 
-    updateView();
+    _hoverView();
 }
 
 
 function hideChoice() {
     document.getElementById('hint').innerHTML = '';
     _hintsDiv = '';
+    _hoverView();
 }
 
 function _select(chosenHand) {
@@ -206,8 +233,13 @@ function _select(chosenHand) {
     _player1choice = chosenHand.id;
 
     aiRandom();
-    _chkWinAgainstComputer(_player1choice, _player2choice, aiThinkingTime());
-
+    
+    setTimeout(() => {
+        
+        _chkWinAgainstComputer(_player1choice, _player2choice, aiThinkingTime());
+    }, 100);
+    
+    
 }
 
 function aiRandom() {
@@ -221,6 +253,7 @@ function aiThinkingTime() {
 
 
 function _chkWinAgainstComputer(player, ai, aiThink) {
+    // if (!ai) return;
 
     for (i = 0; i < choices.length; i++) {
 
@@ -232,7 +265,7 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
             // fant "player" i choices[i].choice 
             //       ^-> er f.eks tree ^-> i er da 5 og i femte posisjon i json er "tree"
 
-            // logger "i" for og vise posisjonen til player i json
+            // logger "i" for og vise posisjonen til player i json  
 
             // siden vi fant "player" for eksempel tree i femte posisjon skal vi nå sjekke om AI vinner eller ikke med å 
             // telle opp i choice[i].beats eller i choices[i].losesTo[o]
@@ -242,22 +275,26 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
                 // sjekker funnet 'O'
                 // 
                 if (ai == choices[i].beats[o]) {
-                    
 
                     let x = _player2hp - Math.random() * 31;
                     _player2hp = x;
                     winner = `${_player1name} wins`;
- 
-
+                    
                     console.log(20);
-
+                    _history.push(`${player}<span id="" style="background-image: url('assets/img/choices/${player}.png'); height:20px; width:20px;display:inline-block;background-size:contain !important;"></span> vs ${ai} <span style="background-image: url('assets/img/choices/${ai}.png'); height:20px; width:20px;display:inline-block;"></span><br>
+                    `);
                     if (_player2hp <= 0) {
-                        _player1score++
-                        _player2hp = 100;
-                        _player2hp = 100;
-                        updateView();
-                    }
 
+                        _player1score++
+
+                        _player2hp = 100;
+                        
+                        _player2hp = 100;
+                        
+                        updateView();
+
+                    }
+                    
                 }
 
                 if (ai == choices[i].losesTo[o]) {
@@ -265,20 +302,29 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
                     _player1hp = x;
                     winner = `${_player2name} wins`;
 
+                    _history.push(`${ai}<span style="background-image: url('assets/img/choices/${ai}.png'); height:20px; width:20px;display:inline-block;background-size:contain !important;"></span> vs ${player} <span style="background-image: url('assets/img/choices/${player}.png'); height:20px; width:20px;display:inline-block;"></span><br>
+                    `);
                     if (_player1hp <= 0) {
                         _player2score++
                         _player1hp = 100
                         updateView();
                     }
 
+                    
                 }
 
             }
+            
+            
+            _gameCount++; // count games
 
+            console.log(ai + player)
             if (ai == choices[i].tie[0]) {
-                let x = player1hp    + 10;
+                _history.push(`${player}<span style="background-image: url('assets/img/choices/${player}.png'); height:20px; width:20px;display:inline-block;"></span> vs ${ai} <span style="background-image: url('assets/img/choices/${ai}.png'); height:20px; width:20px;display:inline-block;"></span><br>
+                `);
+                let x = _player1hp + 10;
                 let y = _player2hp + 10;
-
+                console.log('tie')
                 _player2hp = y;
                 winner = '<img src="assets/img/tie.png" height="70px" width="auto">';
 

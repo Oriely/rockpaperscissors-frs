@@ -21,6 +21,7 @@
   width: 100vw;
   height: 100vh;
   font: 100% "Ubuntu Condensed", sans-serif;
+  font-family: "Black Ops One", cursive;
 }
 
 #app-inner {
@@ -190,12 +191,29 @@
 #row3 {
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "hints gameui exta";
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: 280px;
+  grid-template-areas: "hints gameui extra";
+  min-height: 0;
+  min-width: 0;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .row3-col1 {
   grid-area: hints;
+}
+
+#beats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  float: left;
+}
+
+#loses-to {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  float: right;
 }
 
 .row3-col2 {
@@ -209,7 +227,7 @@
 #result {
   width: 500px;
   color: white;
-  font-size: 20px;
+  font-size: 60px;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -224,7 +242,6 @@
   display: grid;
   grid-template-columns: auto auto auto;
   text-align: center;
-  background: rgba(37, 37, 37, 0.524);
   border-radius: 20px;
 }
 
@@ -234,10 +251,13 @@
   align-items: center;
   align-content: center;
   background-size: contain !important;
-  height: 90px;
+  height: 120px;
   border: 3px solid black;
   border-radius: 50%;
-  width: 90px;
+  width: 120px;
+  margin: 25px;
+  background-color: #404040;
+  font-size: 40px;
 }
 
 .choiceHint {
@@ -245,6 +265,7 @@
   width: 30px;
   height: 30px !important;
   display: inline-block;
+  margin: 3px;
 }
 
 .abcd {
@@ -252,6 +273,8 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+  border-radius: 20px;
+  background-color: rgba(64, 64, 64, 0.476);
 }
 
 #picks div {
@@ -294,6 +317,35 @@
   height: 100%;
   background: background #fe6464;
   background: background linear-gradient(0deg, #fe6464 0%, #b30909 58%, #400202 100%);
+}
+
+#logs {
+  scrollbar-width: 3px;
+  overflow-x: hidden;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+#history {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#logs span {
+  margin: 2px;
+}
+
+#stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#tophints {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=style.css.map */
