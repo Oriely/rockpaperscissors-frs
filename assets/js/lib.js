@@ -287,8 +287,7 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
 
                         _player1score++
 
-                        _player2hp = 100;
-                        
+                        _player1hp = 100
                         _player2hp = 100;
                         
                         updateView();
@@ -307,6 +306,7 @@ function _chkWinAgainstComputer(player, ai, aiThink) {
                     if (_player1hp <= 0) {
                         _player2score++
                         _player1hp = 100
+                        _player2hp = 100;
                         updateView();
                     }
 
